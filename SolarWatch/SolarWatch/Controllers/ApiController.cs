@@ -25,7 +25,7 @@ public class ApiController : ControllerBase
     {
         try
         {
-            _logger.LogInformation("Beginning GetByLocation operation");
+            _logger.LogInformation("Beginning GetFromSunriseAndSunset operation");
             var Client = new WebClient();
             _logger.LogInformation("Downloading data from external API");
             var timeData = Client.DownloadString($"{SaSUrlBase}?lat={lat}&lng={lng}" +
@@ -73,7 +73,7 @@ public class ApiController : ControllerBase
         JsonDocument json = JsonDocument.Parse(data);
         JsonElement result = json.RootElement;
         float[] processedData = 
-            { (float)result[0].GetProperty("lat").GetDouble(), (float)result[0].GetProperty("lon").GetDouble() };
+            { (float)result[0].GetProperty("lon").GetDouble(), (float)result[0].GetProperty("lat").GetDouble() };
         _logger.LogInformation("Data processed");
         return processedData;
     }

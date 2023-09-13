@@ -22,14 +22,14 @@ public class Tests
     public void GetByCityNameAndDateReturnsTheRightData()
     {
         //Budapest coordinates:
-        //"lat": 47.4979937
-        //"lon": 19.0403594
+        //"lat": ~47.4979937
+        //"lon": ~19.0403594
         
         //Should return:
-        //"sunrise": "4:16:41 AM"
-        //"sunset": "5:03:02 PM"
+        //"sunrise": "4:17:12 AM"
+        //"sunset": "5:02:50 PM"
         var result = _controller.GetByCityNameAndDate("Budapest", new DateOnly(2023, 09, 13));
         var okResult = result as OkObjectResult;
-        Assert.That(okResult.Value, Is.EqualTo(new SunriseSunset{SunriseTime = "4:16:41 AM", SunsetTime = "5:03:02 PM"}));
+        Assert.That(okResult.Value, Is.EqualTo(new SunriseSunset{SunriseTime = "4:17:12 AM", SunsetTime = "5:02:50 PM"}));
     }
 }

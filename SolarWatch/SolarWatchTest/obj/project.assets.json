@@ -1620,7 +1620,8 @@
       "NUnit.Analyzers >= 3.6.1",
       "NUnit3TestAdapter >= 4.4.2",
       "SolarWatch >= 1.0.0",
-      "coverlet.collector >= 3.2.0"
+      "coverlet.collector >= 3.2.0",
+      "dotenv.net >= 3.1.2"
     ]
   },
   "packageFolders": {
@@ -1694,6 +1695,10 @@
           "coverlet.collector": {
             "target": "Package",
             "version": "[3.2.0, )"
+          },
+          "dotenv.net": {
+            "target": "Package",
+            "version": "[3.1.2, )"
           }
         },
         "imports": [

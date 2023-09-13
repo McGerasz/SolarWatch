@@ -1,3 +1,4 @@
+using System.Net;
 using dotenv.net;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -31,5 +32,18 @@ public class Tests
         var result = _controller.GetByCityNameAndDate("Budapest", new DateOnly(2023, 09, 13));
         var okResult = result as OkObjectResult;
         Assert.That(okResult.Value, Is.EqualTo(new SunriseSunset{SunriseTime = "4:17:12 AM", SunsetTime = "5:02:50 PM"}));
+    }
+
+    [Test]
+    public void SunriseSunsetModelEqualsTest()
+    {
+        Assert.That(new SunriseSunset { SunriseTime = "0:00:00 AM", SunsetTime = "0:00:00 AM" },
+            Is.EqualTo(new SunriseSunset { SunriseTime = "0:00:00 AM", SunsetTime = "0:00:00 AM" }));
+    }
+
+    [Test]
+    public void EndpointThrowsErrorIfArgumentIsEmptyString()
+    {
+        Assert.Throws<WebException>(() => _controller.GetByCityNameAndDate("", new DateOnly(2023, 09, 13)));
     }
 }

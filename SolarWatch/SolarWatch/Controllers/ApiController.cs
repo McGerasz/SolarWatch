@@ -14,7 +14,10 @@ public class ApiController : ControllerBase
 {
     private string SaSUrlBase = "https://api.sunrise-sunset.org/json";
     private string GeolocatorBase = "http://api.openweathermap.org/geo/1.0/direct?q=";
-    private string GeolocatorKey = DotEnv.Read()["geolocatorApiKey"];
+
+    private string GeolocatorKey = new ConfigurationBuilder()
+        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build()
+        .GetSection("GeolocatorAPIKey").Value;
     private readonly ILogger _logger;
 
     public ApiController(ILogger<ApiController> logger){

@@ -28,7 +28,6 @@ public class Tests
         //Should return:
         //"sunrise": "4:16:41 AM"
         //"sunset": "5:03:02 PM"
-        Environment.SetEnvironmentVariable("geolocatorApiKey", DotEnv.Read()["geolocatorApiKey"]);
         var result = _controller.GetByCityNameAndDate("Budapest", new DateOnly(2023, 09, 13));
         var okResult = result as OkObjectResult;
         Assert.That(okResult.Value, Is.EqualTo(new SunriseSunset{SunriseTime = "4:16:41 AM", SunsetTime = "5:03:02 PM"}));

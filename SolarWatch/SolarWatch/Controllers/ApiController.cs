@@ -24,14 +24,14 @@ public class ApiController : ControllerBase
         _logger = logger;
     }
     [HttpGet("/api/getbylocation")]
-    public IActionResult GetFromSunriseAndSunset([Required]float lng, [Required]float lat, [Required]DateOnly date)
+    public async Task<ActionResult<SunriseSunset>> GetFromSunriseAndSunset([Required]float lng, [Required]float lat, [Required]DateOnly date)
     {
         try
         {
             _logger.LogInformation("Beginning GetFromSunriseAndSunset operation");
-            var Client = new WebClient();
+            var Client = new HttpClient();
             _logger.LogInformation("Downloading data from external API");
-            var timeData = Client.DownloadString($"{SaSUrlBase}?lat={lat}&lng={lng}" +
+            var timeData = await Client.GetStringAsync($"{SaSUrlBase}?lat={lat}&lng={lng}" +
                                                  $"&date={date.Year}-{date.Month}-{date.Day}");
             _logger.LogInformation("Successfully downloaded data");
             return Ok(ProcessJsonFromSnS(timeData));
@@ -45,15 +45,16 @@ public class ApiController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetByCityNameAndDate([Required] string city, [Required] DateOnly date)
+    public async Task<ActionResult<SunriseSunset>> GetByCityNameAndDate([Required] string city, [Required] DateOnly date)
     {
         _logger.LogInformation("Beginning GetByCityNameAndDate operation");
-        var Client = new WebClient();
+        var Client = new HttpClient();
         _logger.LogInformation("Downloading data from external API");
-        var coordData = Client.DownloadString($"{GeolocatorBase}{city}&limit=1&appid={GeolocatorKey}");
+        var coordData = await Client.GetStringAsync($"{GeolocatorBase}{city}&limit=1&appid={GeolocatorKey}");
         _logger.LogInformation("Successfully downloaded data");
         float[] coordinates = GetCoordinatesFromJson(coordData);
-        return GetFromSunriseAndSunset(coordinates[0], coordinates[1], date);
+        var getSunriseAndSunsetData = GetFromSunriseAndSunset(coordinates[0], coordinates[1], date).Result;
+        return Ok(((OkObjectResult)getSunriseAndSunsetData.Result).Value);
     }
     private SunriseSunset ProcessJsonFromSnS(string data)
     {

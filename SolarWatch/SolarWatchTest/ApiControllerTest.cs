@@ -20,7 +20,7 @@ public class Tests
     }
 
     [Test]
-    public void GetByCityNameAndDateReturnsTheRightData()
+    public async Task GetByCityNameAndDateReturnsTheRightData()
     {
         //Budapest coordinates:
         //"lat": ~47.4979937
@@ -29,9 +29,9 @@ public class Tests
         //Should return:
         //"sunrise": "4:17:12 AM"
         //"sunset": "5:02:50 PM"
-        var result = _controller.GetByCityNameAndDate("Budapest", new DateOnly(2023, 09, 13));
-        var okResult = result as OkObjectResult;
-        Assert.That(okResult.Value, Is.EqualTo(new SunriseSunset{SunriseTime = "4:17:12 AM", SunsetTime = "5:02:50 PM"}));
+        var result = await _controller.GetByCityNameAndDate("Budapest", new DateOnly(2023, 09, 13));
+        var expected = new SunriseSunset{SunriseTime = "4:17:12 AM", SunsetTime = "5:02:50 PM"};
+        Assert.That(((OkObjectResult)result.Result).Value, Is.EqualTo(expected));
     }
 
     [Test]
@@ -44,6 +44,12 @@ public class Tests
     [Test]
     public void EndpointThrowsErrorIfArgumentIsEmptyString()
     {
-        Assert.Throws<WebException>(() => _controller.GetByCityNameAndDate("", new DateOnly(2023, 09, 13)));
+        Assert.That(GetByCityNameAndDateTestParameter, Throws.Exception);
+    }
+
+    private async Task<ActionResult<SunriseSunset>> GetByCityNameAndDateTestParameter()
+    {
+        var data = await _controller.GetByCityNameAndDate("", new DateOnly(2023, 09, 13));
+        return data;
     }
 }

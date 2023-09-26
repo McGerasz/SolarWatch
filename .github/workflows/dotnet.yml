@@ -29,7 +29,7 @@ jobs:
       run: dotnet test SolarWatch/SolarWatch.sln --no-restore --verbosity normal
     - name: Build Docker image
       run: |
-        docker build -t mcgerasz/solarwatch:latest -f SolarWatch/Dockerfile  .
+        docker build -t mcgerasz/solarwatch:latest .
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push mcgerasz/solarwatch:latest
       working-directory: SolarWatch

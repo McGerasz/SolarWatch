@@ -26,4 +26,4 @@ jobs:
     - name: Build
       run: dotnet build SolarWatch/SolarWatch/SolarWatch.csproj --no-restore
     - name: Test
-      run: dotnet test SolarWatch/SolarWatchTest/SolarWatchTest.csproj --no-build --verbosity normal
+      run: dotnet test SolarWatch/SolarWatchTest/SolarWatchTest.csproj --no-restore --verbosity normal

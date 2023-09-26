@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
 
@@ -29,6 +29,6 @@ jobs:
       run: dotnet test SolarWatch/SolarWatch.sln --no-restore --verbosity normal
     - name: Build Docker image
       run: |
-        docker build -t mcgerasz/solarwatch:latest .
+        docker build -t mcgerasz/solarwatch:latest -f SolarWatch/Dockerfile .
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push mcgerasz/solarwatch:latest

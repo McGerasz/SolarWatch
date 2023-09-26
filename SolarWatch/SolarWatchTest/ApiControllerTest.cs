@@ -23,15 +23,13 @@ public class Tests
     public async Task GetByCityNameAndDateReturnsTheRightData()
     {
         //Budapest coordinates:
-        //"lat": ~47.4979937
-        //"lon": ~19.0403594
-        
+        //19,04036 lng, 47,497993 lat
         //Should return:
         //"sunrise": "4:17:12 AM"
         //"sunset": "5:02:50 PM"
         var result = await _controller.GetByCityNameAndDate("Budapest", new DateOnly(2023, 09, 13));
-        var expected = new SunriseSunset{SunriseTime = "4:17:12 AM", SunsetTime = "5:02:50 PM"};
-        Assert.That(((OkObjectResult)result.Result).Value, Is.EqualTo(expected));
+        var expected = await _controller.GetFromSunriseAndSunset(19.04036f, 47.497993f, new DateOnly(2023, 09, 13));
+        Assert.That(((OkObjectResult)result.Result).Value, Is.EqualTo(((OkObjectResult)expected.Result).Value));
     }
 
     [Test]

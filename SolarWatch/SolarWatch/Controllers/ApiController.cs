@@ -28,6 +28,7 @@ public class ApiController : ControllerBase
     {
         try
         {
+            _logger.LogInformation($"{lng} lng, {lat} lat");
             _logger.LogInformation("Beginning GetFromSunriseAndSunset operation");
             var Client = new HttpClient();
             _logger.LogInformation("Downloading data from external API");

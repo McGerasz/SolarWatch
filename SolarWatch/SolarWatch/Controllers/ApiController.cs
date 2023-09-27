@@ -23,7 +23,7 @@ public class ApiController : ControllerBase
     public ApiController(ILogger<ApiController> logger){
         _logger = logger;
     }
-    [HttpGet("/api/getbylocation")]
+    /*[HttpGet("/api/getbylocation")]
     public async Task<ActionResult<SunriseSunset>> GetFromSunriseAndSunset([Required]float lng, [Required]float lat, [Required]DateOnly date)
     {
         try
@@ -56,30 +56,5 @@ public class ApiController : ControllerBase
         float[] coordinates = GetCoordinatesFromJson(coordData);
         var getSunriseAndSunsetData = GetFromSunriseAndSunset(coordinates[0], coordinates[1], date).Result;
         return Ok(((OkObjectResult)getSunriseAndSunsetData.Result).Value);
-    }
-    private SunriseSunset ProcessJsonFromSnS(string data)
-    {
-        _logger.LogInformation("Processing data");
-        JsonDocument json = JsonDocument.Parse(data);
-        JsonElement results = json.RootElement.GetProperty("results");
-        
-        SunriseSunset processedData = new SunriseSunset
-        {
-            SunriseTime = results.GetProperty("sunrise").GetString(),
-            SunsetTime = results.GetProperty("sunset").GetString()
-        };
-        _logger.LogInformation("Data processed");
-        return processedData;
-    }
-
-    private float[] GetCoordinatesFromJson(string data)
-    {
-        _logger.LogInformation("Processing incoming data");
-        JsonDocument json = JsonDocument.Parse(data);
-        JsonElement result = json.RootElement;
-        float[] processedData = 
-            { (float)result[0].GetProperty("lon").GetDouble(), (float)result[0].GetProperty("lat").GetDouble() };
-        _logger.LogInformation("Data processed");
-        return processedData;
-    }
+    }*/
 }

@@ -5,6 +5,7 @@ namespace SolarWatch.Model;
 
 public class SunriseSunset
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; init; }
     public string SunriseTime { get; init; }
     public string SunsetTime { get; init; }

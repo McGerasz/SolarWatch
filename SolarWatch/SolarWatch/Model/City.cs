@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace SolarWatch.Model;
 
 public class City
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; init; }
     public string Name { get; init; }
     public float Longitude { get; init; }

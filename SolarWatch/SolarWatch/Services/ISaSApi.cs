@@ -2,5 +2,5 @@ namespace SolarWatch.Services;
 
 public interface ISaSApi
 {
-    Task<string> GetSunriseSunsetData(double lat, double lon, DateOnly dateOnly);
+    Task<string> GetSunriseSunsetData(float lat, float lon, DateOnly dateOnly);
 }

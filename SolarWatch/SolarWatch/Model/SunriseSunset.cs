@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices.JavaScript;
 
@@ -5,11 +6,13 @@ namespace SolarWatch.Model;
 
 public class SunriseSunset
 {
+    [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; init; }
     public string SunriseTime { get; init; }
     public string SunsetTime { get; init; }
     [Column(TypeName="date")]
-    public DateTime Date { get; init; }
-    public string CityName { get; init; }
+    public DateTime Date { get; set; }
+    public int CityId { get; set; }
+    public City City { get; set; }
 }

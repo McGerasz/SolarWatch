@@ -5,10 +5,18 @@ namespace SolarWatch.Extensions;
 
 public static class CityExtensions
 {
-    public static SunriseSunset? HasDate(this City city, DateTime date)
+    public static SunriseSunset? GetBySSDate(this City city, DateOnly date)
     {
+        try
+        {
+            Console.WriteLine(city.SunriseSunsets.First());
         return city.SunriseSunsets.FirstOrDefault(sunset => sunset.Date.Year == date.Year &&
                                                             sunset.Date.Month == date.Month
                                                             && sunset.Date.Day == date.Day);
+        }
+        catch
+        {
+            return null;
+        }
     }
 }

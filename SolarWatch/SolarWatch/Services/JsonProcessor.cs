@@ -8,24 +8,31 @@ public class JsonProcessor : IJsonProcessor
     public City ProcessCityData(string data)
     {
         JsonDocument json = JsonDocument.Parse(data);
-        JsonElement jsonArray = json.RootElement;
+        JsonElement result = json.RootElement;
+
+
+        string name = result[0].GetProperty("name").GetString();
+        string country = result[0].GetProperty("country").GetString();
+        string state = "";
+        try
+        {
+            result[0].GetProperty("state").GetString();
+        }
+        catch
+        {
+            state = "//";
+        }
+        double lon = result[0].GetProperty("lon").GetDouble();
+        double lat = result[0].GetProperty("lat").GetDouble();
         
-        JsonElement firstItem = jsonArray.EnumerateArray().FirstOrDefault();
 
-        string name = firstItem.GetProperty("name").GetString();
-        string country = firstItem.GetProperty("country").GetString();
-        string state = firstItem.GetProperty("state").GetString();
-        double lon = firstItem.GetProperty("lon").GetDouble();
-        double lat = firstItem.GetProperty("lat").GetDouble();
-
-        return new City()
+        return new City
         {
             Name = name,
             Country = country,
             State = state,
             Longitude = (float)lon,
-            Latitude = (float)lat,
-            SunriseSunsets = new List<SunriseSunset>()
+            Latitude = (float)lat
         };
     }
 

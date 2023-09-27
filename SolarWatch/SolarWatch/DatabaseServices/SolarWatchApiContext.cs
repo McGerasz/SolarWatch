@@ -23,5 +23,10 @@ public class SolarWatchApiContext : DbContext
         builder.Entity<City>()
             .HasIndex(u => u.Name)
             .IsUnique();
+        builder.Entity<City>().HasMany(e => e.SunriseSunsets)
+            .WithOne(e => e.City)
+            .HasForeignKey(e => e.CityId)
+            .HasPrincipalKey(e => e.Id);
+
     }
 }

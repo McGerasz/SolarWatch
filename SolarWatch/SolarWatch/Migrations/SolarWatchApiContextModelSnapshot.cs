@@ -64,12 +64,8 @@ namespace SolarWatch.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CityId")
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
-
-                    b.Property<string>("CityName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
@@ -91,9 +87,13 @@ namespace SolarWatch.Migrations
 
             modelBuilder.Entity("SolarWatch.Model.SunriseSunset", b =>
                 {
-                    b.HasOne("SolarWatch.Model.City", null)
+                    b.HasOne("SolarWatch.Model.City", "City")
                         .WithMany("SunriseSunsets")
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("SolarWatch.Model.City", b =>

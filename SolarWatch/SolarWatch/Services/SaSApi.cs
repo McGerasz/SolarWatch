@@ -4,7 +4,7 @@ public class SaSApi : ISaSApi
 {
     private string SaSUrlBase = "https://api.sunrise-sunset.org/json";
 
-    public async Task<string> GetSunriseSunsetData(double lat, double lon, DateOnly date)
+    public async Task<string> GetSunriseSunsetData(float lat, float lon, DateOnly date)
     {
         var Client = new HttpClient();
         var timeData = await Client.GetStringAsync($"{SaSUrlBase}?lat={lat}&lng={lon}" +

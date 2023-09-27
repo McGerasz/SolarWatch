@@ -2,6 +2,7 @@ namespace SolarWatch.Model;
 
 public class City
 {
+    public int Id { get; init; }
     public string Name { get; init; }
     public float Longitude { get; init; }
     public float Latitude { get; init; }

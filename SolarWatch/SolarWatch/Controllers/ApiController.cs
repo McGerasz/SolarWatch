@@ -5,6 +5,7 @@ using System.Text.Json;
 using dotenv.net;
 using Microsoft.AspNetCore.Mvc;
 using SolarWatch.Model;
+using SolarWatch.Services;
 
 namespace SolarWatch.Controllers;
 
@@ -12,16 +13,12 @@ namespace SolarWatch.Controllers;
 [Route("/api")]
 public class ApiController : ControllerBase
 {
-    private string SaSUrlBase = "https://api.sunrise-sunset.org/json";
-    private string GeolocatorBase = "http://api.openweathermap.org/geo/1.0/direct?q=";
-
-    private string GeolocatorKey = new ConfigurationBuilder()
-        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build()
-        .GetSection("GeolocatorAPIKey").Value;
     private readonly ILogger _logger;
+    private readonly IJsonProcessor _jsonProcessor;
 
-    public ApiController(ILogger<ApiController> logger){
+    public ApiController(ILogger<ApiController> logger, IJsonProcessor jsonProcessor){
         _logger = logger;
+        _jsonProcessor = jsonProcessor;
     }
     /*[HttpGet("/api/getbylocation")]
     public async Task<ActionResult<SunriseSunset>> GetFromSunriseAndSunset([Required]float lng, [Required]float lat, [Required]DateOnly date)

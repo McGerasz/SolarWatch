@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  solarwatch-app:
+    image: solarwatch:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - mssql
+
+  solarwatch-sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: ${DATABASE_PASSWORD}
+      ACCEPT_EULA: Y
+    ports:
+      - "1433:1433"

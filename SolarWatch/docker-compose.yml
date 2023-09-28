@@ -10,8 +10,8 @@ services:
     depends_on:
       - mssql
     environment:
-      ASPNETCORE_CONNECTIONSTRING: ${{secrets.CONNECTIONSTRING}}
-      ASPNETCORE_GEOLOCATORAPIKEY: ${{secrets.GEOLOCATORAPIKEY}}
+      ASPNETCORE_CONNECTIONSTRING: ${ASPNETCORE_CONNECTIONSTRING}
+      ASPNETCORE_GEOLOCATORAPIKEY: ${ASPNETCORE_GEOLOCATORAPIKEY}
 
   mssql:
     image: mcr.microsoft.com/mssql/server

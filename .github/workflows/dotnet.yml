@@ -29,16 +29,6 @@ jobs:
       run: dotnet restore SolarWatch/SolarWatch.sln
     - name: Build
       run: dotnet build SolarWatch/SolarWatch/SolarWatch.csproj --no-restore
-    - name: Start Database Container
-      run: |
-        docker-compose -f docker-compose.yml up -d
-      working-directory: SolarWatch
-    - name: Install EF Core Tools
-      run: dotnet tool install --global dotnet-ef --version 7.0.11
-    - name: Apply EF Core Migrations
-      run: |
-        dotnet-ef database update --project SolarWatch --context SolarWatchApiContext
-      working-directory: SolarWatch
     - name: Test
       run: dotnet test SolarWatch/SolarWatch.sln --no-restore --verbosity normal
     - name: Build Docker image

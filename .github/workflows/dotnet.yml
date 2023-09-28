@@ -25,12 +25,12 @@ jobs:
       run: dotnet restore SolarWatch/SolarWatch.sln
     - name: Build
       run: dotnet build SolarWatch/SolarWatch/SolarWatch.csproj --no-restore
-    - name: Test
-      run: dotnet test SolarWatch/SolarWatch.sln --no-restore --verbosity normal
     - name: Start Database Container
       run: |
         docker-compose -f docker-compose-db.yml up -d
       working-directory: SolarWatch
+    - name: Test
+      run: dotnet test SolarWatch/SolarWatch.sln --no-restore --verbosity normal
     - name: Build Docker image
       run: |
         docker build -t mcgerasz/solarwatch:latest .

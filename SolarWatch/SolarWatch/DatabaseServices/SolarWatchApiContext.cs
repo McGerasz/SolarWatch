@@ -16,7 +16,7 @@ public class SolarWatchApiContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(
-            _configuration["MSSQLServer:ConnectionString"]);
+            Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING"));
     }
     protected override void OnModelCreating(ModelBuilder builder)
     {

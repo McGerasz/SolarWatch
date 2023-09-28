@@ -16,7 +16,7 @@ public class JsonProcessor : IJsonProcessor
         string state = "";
         try
         {
-            result[0].GetProperty("state").GetString();
+            state = result[0].GetProperty("state").GetString();
         }
         catch
         {

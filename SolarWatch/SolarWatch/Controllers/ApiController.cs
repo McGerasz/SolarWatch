@@ -64,7 +64,7 @@ public class ApiController : ControllerBase
                 var newSSData = _jsonProcessor.ProcessSunriseSunsetData(rawData);
                 _logger.LogInformation("Fetch complete");
                 _logger.LogInformation(newSSData.ToString());
-                _logger.LogInformation("Updating database");
+                _logger.LogInformation("Updating database...");
                 newSSData.CityId = city.Id;
                 newSSData.Date = date.ToDateTime(TimeOnly.Parse("00:00 AM"));
                 _sunriseSunsetRepository.Add(newSSData);
@@ -77,7 +77,7 @@ public class ApiController : ControllerBase
         catch (Exception e)
         {
             _logger.LogError("There was an error during operation");
-            _logger.LogError(e.InnerException.Message);
+            _logger.LogError((e.InnerException ?? e).Message);
             return Problem();
         }
     }

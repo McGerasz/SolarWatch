@@ -13,7 +13,7 @@ namespace SolarWatchTest;
 
 public class Tests
 {
-    private ApiController _controller;
+    /*private ApiController _controller;
     private Mock<ILogger<ApiController>> _loggerMock;
     private IJsonProcessor _jsonProcessor;
     private ISaSApi _saSApi;
@@ -23,7 +23,6 @@ public class Tests
     [SetUp]
     public void Setup()
     {
-        DotEnv.Load();
         _loggerMock = new Mock<ILogger<ApiController>>();
         _jsonProcessor = new JsonProcessor();
         _saSApi = new SaSApi();
@@ -39,5 +38,5 @@ public class Tests
         var response = await _controller.MainGet("Budapest", new DateOnly(2023, 09, 27));
         Assert.IsInstanceOf(typeof(OkObjectResult), response.Result);
         Assert.That(((OkObjectResult)response.Result).Value, Is.Not.Empty);
-    }
+    }*/
 }

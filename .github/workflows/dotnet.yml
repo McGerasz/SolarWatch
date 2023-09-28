@@ -33,3 +33,6 @@ jobs:
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push mcgerasz/solarwatch:latest
       working-directory: SolarWatch
+      env:
+        ASPNETCORE_CONNECTIONSTRING: ${{secrets.CONNECTIONSTRING}}
+        ASPNETCORE_GEOLOCATORAPIKEY: ${{secrets.GEOLOCATORAPIKEY}}

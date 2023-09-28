@@ -22,6 +22,8 @@ jobs:
       - name: Build and Deploy
         env:
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          ASPNETCORE_CONNECTIONSTRING: ${{secrets.CONNECTIONSTRING}}
+          ASPNETCORE_GEOLOCATORAPIKEY: ${{secrets.GEOLOCATORAPIKEY}}
         run: |
          cd SolarWatch 
          docker-compose -f docker-compose.yml up -d

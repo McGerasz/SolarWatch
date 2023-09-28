@@ -10,7 +10,7 @@ services:
     depends_on:
       - mssql
 
-  solarwatch-sqlserver:
+  mssql:
     image: mcr.microsoft.com/mssql/server
     environment:
       SA_PASSWORD: ${DATABASE_PASSWORD}

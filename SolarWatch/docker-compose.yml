@@ -9,7 +9,7 @@ services:
       - "80:80"
     depends_on:
       - mssql
-     environment:
+    environment:
       ASPNETCORE_CONNECTIONSTRING: ${{secrets.CONNECTIONSTRING}}
       ASPNETCORE_GEOLOCATORAPIKEY: ${{secrets.GEOLOCATORAPIKEY}}
 

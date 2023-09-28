@@ -33,6 +33,8 @@ jobs:
       run: |
         docker-compose -f docker-compose.yml up -d
       working-directory: SolarWatch
+    - name: Install EF Core Tools
+      run: dotnet tool install --global dotnet-ef --version 6.0.0
     - name: Apply EF Core Migrations
       run: |
         dotnet ef database update --project SolarWatch --context SolarWatchApiContext

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Text.Json;
 using dotenv.net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SolarWatch.DatabaseServices.Repositories;
@@ -33,7 +34,7 @@ public class SolarWatchController : ControllerBase
         _sunriseSunsetRepository = sunriseSunsetRepository;
     }
 
-    [HttpGet("get")]
+    [HttpGet("get"), Authorize(Roles="Admin")]
     public async Task<ActionResult<SunriseSunset>> MainGet([Required] string cityName, [Required] DateOnly date)
     {
         _logger.LogInformation("Beginning operation");

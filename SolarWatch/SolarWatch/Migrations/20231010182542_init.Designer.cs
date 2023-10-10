@@ -12,15 +12,15 @@ using SolarWatch.DatabaseServices;
 namespace SolarWatch.Migrations
 {
     [DbContext(typeof(SolarWatchApiContext))]
-    [Migration("20230927165123_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231010182542_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

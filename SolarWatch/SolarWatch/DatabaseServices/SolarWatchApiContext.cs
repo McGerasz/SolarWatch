@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using SolarWatch.Model;
 
 namespace SolarWatch.DatabaseServices;
@@ -12,6 +14,12 @@ public class SolarWatchApiContext : DbContext
     public SolarWatchApiContext(IConfiguration configuration)
     {
         _configuration = configuration;
+        var databaseCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
+        if (databaseCreator != null)
+        {
+            if(!databaseCreator.CanConnect()) databaseCreator.Create();
+            if(!databaseCreator.HasTables()) databaseCreator.CreateTables();
+        }
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

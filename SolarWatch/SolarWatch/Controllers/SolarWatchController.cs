@@ -13,8 +13,8 @@ using SolarWatch.Services;
 namespace SolarWatch.Controllers;
 
 [Controller]
-[Route("/api")]
-public class ApiController : ControllerBase
+[Route("/api/[controller]")]
+public class SolarWatchController : ControllerBase
 {
     private readonly ILogger _logger;
     private readonly IJsonProcessor _jsonProcessor;
@@ -23,7 +23,7 @@ public class ApiController : ControllerBase
     private readonly ICityRepository _cityRepository;
     private readonly ISunriseSunsetRepository _sunriseSunsetRepository;
 
-    public ApiController(ILogger<ApiController> logger, IJsonProcessor jsonProcessor, IGeolocatorApi geolocatorApi,
+    public SolarWatchController(ILogger<SolarWatchController> logger, IJsonProcessor jsonProcessor, IGeolocatorApi geolocatorApi,
         ISaSApi saSApi, ICityRepository cityRepository, ISunriseSunsetRepository sunriseSunsetRepository){
         _logger = logger;
         _jsonProcessor = jsonProcessor;
@@ -33,7 +33,7 @@ public class ApiController : ControllerBase
         _sunriseSunsetRepository = sunriseSunsetRepository;
     }
 
-    [HttpGet("/api/get")]
+    [HttpGet("get")]
     public async Task<ActionResult<SunriseSunset>> MainGet([Required] string cityName, [Required] DateOnly date)
     {
         _logger.LogInformation("Beginning operation");
@@ -81,38 +81,4 @@ public class ApiController : ControllerBase
             return Problem();
         }
     }
-    /*[HttpGet("/api/getbylocation")]
-    public async Task<ActionResult<SunriseSunset>> GetFromSunriseAndSunset([Required]float lng, [Required]float lat, [Required]DateOnly date)
-    {
-        try
-        {
-            _logger.LogInformation($"{lng} lng, {lat} lat");
-            _logger.LogInformation("Beginning GetFromSunriseAndSunset operation");
-            var Client = new HttpClient();
-            _logger.LogInformation("Downloading data from external API");
-            var timeData = await Client.GetStringAsync($"{SaSUrlBase}?lat={lat}&lng={lng}" +
-                                                 $"&date={date.Year}-{date.Month}-{date.Day}");
-            _logger.LogInformation("Successfully downloaded data");
-            return Ok(ProcessJsonFromSnS(timeData));
-
-        }
-        catch(Exception e)
-        {
-            _logger.LogError("An error has occured while processing Your request");
-            return BadRequest();
-        }
-    }
-
-    [HttpGet]
-    public async Task<ActionResult<SunriseSunset>> GetByCityNameAndDate([Required] string city, [Required] DateOnly date)
-    {
-        _logger.LogInformation("Beginning GetByCityNameAndDate operation");
-        var Client = new HttpClient();
-        _logger.LogInformation("Downloading data from external API");
-        var coordData = await Client.GetStringAsync($"{GeolocatorBase}{city}&limit=1&appid={GeolocatorKey}");
-        _logger.LogInformation("Successfully downloaded data");
-        float[] coordinates = GetCoordinatesFromJson(coordData);
-        var getSunriseAndSunsetData = GetFromSunriseAndSunset(coordinates[0], coordinates[1], date).Result;
-        return Ok(((OkObjectResult)getSunriseAndSunsetData.Result).Value);
-    }*/
 }

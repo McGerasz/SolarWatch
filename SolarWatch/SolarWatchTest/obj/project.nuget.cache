@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1b4VwN3XwCdpIkaBR0IOAHApKnBvLC272VKbd5IPJWsAzX3Hak2N4X7Vo70uCgANDWssj7BWrkvpbtuOSVGzZw==",
+  "dgSpecHash": "QSLo6AvUPrg/JmEUphVV00huit6Tyo2pJxgyViNyuC1ZMYekfU3caZCPERwJElbHnR4pl4ZmvsBNYlLcKTQ0Mw==",
   "success": true,
   "projectFilePath": "C:\\Users\\gergo\\Documents\\Codecool\\C#\\SolarWatch\\SolarWatch\\SolarWatchTest\\SolarWatchTest.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\gergo\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\dotenv.net\\3.1.2\\dotenv.net.3.1.2.nupkg.sha512",
+    "C:\\Users\\gergo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.12\\microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.10\\microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\microsoft.codecoverage\\17.6.0\\microsoft.codecoverage.17.6.0.nupkg.sha512",

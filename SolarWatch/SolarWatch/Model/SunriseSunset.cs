@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices.JavaScript;
+using System.Text.Json.Serialization;
 
 namespace SolarWatch.Model;
 
@@ -14,5 +15,6 @@ public class SunriseSunset
     [Column(TypeName="date")]
     public DateTime Date { get; set; }
     public int CityId { get; set; }
+    [JsonIgnore]
     public City City { get; set; }
 }

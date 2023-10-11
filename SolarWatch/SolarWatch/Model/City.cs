@@ -9,11 +9,11 @@ public class City
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; init; }
-    public string Name { get; init; }
-    public float Longitude { get; init; }
-    public float Latitude { get; init; }
-    public string State { get; init; }
-    public string Country { get; init; }
+    public string Name { get; set; }
+    public float Longitude { get; set; }
+    public float Latitude { get; set; }
+    public string State { get; set; }
+    public string Country { get; set; }
     [JsonIgnore]
     public ICollection<SunriseSunset> SunriseSunsets { get; } = new List<SunriseSunset>();
 

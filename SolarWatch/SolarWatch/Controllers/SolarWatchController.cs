@@ -34,7 +34,7 @@ public class SolarWatchController : ControllerBase
         _sunriseSunsetRepository = sunriseSunsetRepository;
     }
 
-    [HttpGet("get"), Authorize(Roles="Admin")]
+    [HttpGet("get"), Authorize(Roles="User, Admin")]
     public async Task<ActionResult<SunriseSunset>> MainGet([Required] string cityName, [Required] DateOnly date)
     {
         _logger.LogInformation("Beginning operation");
@@ -81,5 +81,79 @@ public class SolarWatchController : ControllerBase
             _logger.LogError((e.InnerException ?? e).Message);
             return Problem();
         }
+    }
+
+    [HttpGet("city"), Authorize(Roles = "User, Admin")]
+    public async Task<IActionResult> GetCity([Required] int id)
+    {
+        _logger.LogInformation("Searching for city in repository");
+        City? city = _cityRepository.GetById(id);
+        if (city is not null) return Ok(city);
+        _logger.LogError("Id not found in city repository");
+        return NotFound();
+    }
+    [HttpPost("city"), Authorize(Roles = "Admin")]
+    public async Task<IActionResult> PostCity([Required]string cityName)
+    {
+        _logger.LogInformation("Searching for city in repository");
+        City? city = _cityRepository.GetByName(cityName);
+        if (city is null)
+        {
+            _logger.LogInformation("City was not found");
+            _logger.LogInformation("Fetching from external API...");
+            var rawData = await _geolocatorApi.GetLocationData(cityName);
+            _logger.LogInformation("Processing data...");
+            city = _jsonProcessor.ProcessCityData(rawData);
+            _logger.LogInformation("Updating database...");
+            _cityRepository.Add(city);
+            _logger.LogInformation("New City entry successfully added");
+            return Ok(city);
+        }
+        _logger.LogError("City is already present in repository");
+        return Conflict();
+    }
+
+    [HttpPatch("city"), Authorize(Roles = "Admin")]
+    public async Task<IActionResult> PatchCity([Required] int id, string? name, float? lon, float? lat, string? state, string? country)
+    {
+        _logger.LogInformation("Searching for city in repository");
+        City? city = _cityRepository.GetById(id);
+        if (city is not null)
+        {
+            _logger.LogInformation("City was found in repository");
+            _logger.LogInformation("Processing incoming updates...");
+            city.Name = name ?? city.Name;
+            city.Longitude = lon ?? city.Longitude;
+            city.Latitude = lat ?? city.Latitude;
+            if (state is not null)
+            {
+                if (state.Length == 2) city.State = state;
+            }
+
+            city.Country = country ?? city.Country;
+            _logger.LogInformation("Updating database");
+            _cityRepository.Update(city);
+            _logger.LogInformation("Operation successful");
+            return Ok(city);
+        }
+        _logger.LogError("City was not found in repository");
+        return NotFound();
+    }
+
+    [HttpDelete("city"), Authorize(Roles = "Admin")]
+    public async Task<IActionResult> DeleteCity([Required] int id)
+    {
+        _logger.LogInformation("Searching for city in repository");
+        City? city = _cityRepository.GetById(id);
+        if (city is not null)
+        {
+            _logger.LogInformation("City was found in repository");
+            _logger.LogInformation("Deleting city from database...");
+            _cityRepository.Delete(city);
+            _logger.LogInformation("City deleted successfully");
+            return Ok();
+        }
+        _logger.LogError("Id was not found in city repository");
+        return NotFound();
     }
 }

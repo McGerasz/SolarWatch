@@ -45,4 +45,14 @@ public class CityRepository : ICityRepository
         dbContext.Update(city);
         dbContext.SaveChanges();
     }
+
+    public City? GetById(int id)
+    {
+        {
+            using var dbContext = new SolarWatchApiContext(_configuration);
+            return dbContext.Cities
+                .Include(city => city.SunriseSunsets)
+                .FirstOrDefault(city => city.Id == id);
+        }
+    }
 }

@@ -10,8 +10,8 @@ public class SunriseSunset
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; init; }
-    public string SunriseTime { get; init; }
-    public string SunsetTime { get; init; }
+    public string SunriseTime { get; set; }
+    public string SunsetTime { get; set; }
     [Column(TypeName="date")]
     public DateTime Date { get; set; }
     public int CityId { get; set; }

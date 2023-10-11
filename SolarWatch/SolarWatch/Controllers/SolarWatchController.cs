@@ -73,7 +73,7 @@ public class SolarWatchController : ControllerBase
                 searched = city.GetBySSDate(date);
             }
             _logger.LogInformation("Operation successful");
-            return Ok($"{searched.SunriseTime}, {searched.SunsetTime}");
+            return Ok(searched);
         }
         catch (Exception e)
         {
@@ -154,6 +154,83 @@ public class SolarWatchController : ControllerBase
             return Ok();
         }
         _logger.LogError("Id was not found in city repository");
+        return NotFound();
+    }
+
+    [HttpGet("SunriseSunset"), Authorize(Roles = "User, Admin")]
+    public async Task<IActionResult> GetSnSById([Required] int id)
+    {
+        _logger.LogInformation("Searching for SunriseSunset in repository...");
+        SunriseSunset? snS = _sunriseSunsetRepository.GetById(id);
+        if (snS is not null) return Ok(snS);
+        _logger.LogError("Id was not found in the repository");
+        return NotFound();
+    }
+    [HttpPost("SunriseSunset"), Authorize(Roles = "Admin")]
+    public async Task<IActionResult> PostSnS([Required]string sunriseTime, [Required]string sunsetTime, [Required]DateTime date,
+        [Required]int cityId)
+    {
+        _logger.LogInformation("Creating new object...");
+        SunriseSunset newSnS = new SunriseSunset()
+        {
+            SunriseTime = sunriseTime,
+            SunsetTime = sunsetTime,
+            Date = date,
+            CityId = cityId
+        };
+        _logger.LogInformation("Updating database...");
+        _sunriseSunsetRepository.Add(newSnS);
+        return Ok(_sunriseSunsetRepository.GetAll().First(sunset => sunset.SunriseTime == sunriseTime
+                                                                    && sunset.SunsetTime == sunriseTime
+                                                                    && sunset.Date.Year == date.Date.Year 
+                                                                    && sunset.Date.Month == date.Date.Month
+                                                                    && sunset.Date.Day == date.Date.Day
+                                                                    && sunset.CityId == cityId));
+    }
+
+    [HttpPatch("SunriseSunset"), Authorize(Roles = "Admin")]
+    public async Task<IActionResult> PatchSnS([Required] int id, string? sunriseTime, string? sunsetTime, DateTime? date,
+        int? cityId)
+    {
+        _logger.LogInformation("Searching for SnS in repository");
+        SunriseSunset? snS = _sunriseSunsetRepository.GetById(id);
+        if (snS is not null)
+        {
+            _logger.LogInformation("SunriseSunset was found in repository");
+            _logger.LogInformation("Processing incoming updates...");
+            snS.SunriseTime = sunriseTime ?? snS.SunriseTime;
+            snS.SunsetTime = sunsetTime ?? snS.SunsetTime;
+            snS.Date = date ?? snS.Date;
+            if (cityId is not null)
+            {
+                if (_cityRepository.GetById(cityId.Value) is not null)
+                {
+                    snS.CityId = (int)cityId;
+                }
+                _logger.LogError("CityId was not found in repository \n CityId will not be updated");
+            }
+            _logger.LogInformation("Updating database");
+            _sunriseSunsetRepository.Update(snS);
+            _logger.LogInformation("Operation successful");
+            return Ok(snS);
+        }
+        _logger.LogError("SunriseSunset was not found in repository");
+        return NotFound();
+    }
+    [HttpDelete("SunriseSunset"), Authorize(Roles = "Admin")]
+    public async Task<IActionResult> DeleteSnS([Required] int id)
+    {
+        _logger.LogInformation("Searching for SunriseSUnet in repository");
+        SunriseSunset? snS = _sunriseSunsetRepository.GetById(id);
+        if (snS is not null)
+        {
+            _logger.LogInformation("SunriseSunset was found in repository");
+            _logger.LogInformation("Deleting object from database...");
+            _sunriseSunsetRepository.Delete(snS);
+            _logger.LogInformation("Object deleted successfully");
+            return Ok();
+        }
+        _logger.LogError("Id was not found in SunriseSunset repository");
         return NotFound();
     }
 }

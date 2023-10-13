@@ -6,6 +6,7 @@ import Layout from './Pages/Layout';
 import Homepage from './Pages/Homepage'
 import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage';
+import SolarWatchPage from './Pages/SolarWatchPage';
 
 
 const router = createBrowserRouter([
@@ -22,6 +23,9 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <RegisterPage />
+      },{
+        path: "/solar-watch",
+        element: <SolarWatchPage />
       }
     ]
   }

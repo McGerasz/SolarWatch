@@ -59,7 +59,7 @@ export default function RegisterComponent() {
         <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} className="form-control"/><br />
         <label htmlFor="password"><h4>Password:</h4></label>
         <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} className="form-control"/><br />
-        <input type="submit" value="Register" class="btn btn-dark"></input>
+        <input type="submit" value="Register" className="btn btn-dark"></input>
         {registerResponse && (
         <div className="registererror">
           <br /><h3>{registerResponse}</h3>

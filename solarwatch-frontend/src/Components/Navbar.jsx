@@ -44,6 +44,11 @@ export default function NavigationBar() {
               </Link>
             </Nav.Item>
             <Nav.Item>
+              <Link to="/solar-watch" className='linkText'>
+              &nbsp;&nbsp;&nbsp;&nbsp;SolarWatch&nbsp;&nbsp;&nbsp;&nbsp;|
+              </Link>
+            </Nav.Item>
+            <Nav.Item>
               <Link to="/register" className='linkText'>
               &nbsp;&nbsp;&nbsp;&nbsp;Register&nbsp;&nbsp;&nbsp;&nbsp;|
               </Link>
@@ -54,7 +59,7 @@ export default function NavigationBar() {
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to="/logout" className='linkText' onClick={handleLogout}>
+                <Link to="/" className='linkText' onClick={handleLogout}>
                 &nbsp;&nbsp;&nbsp;&nbsp;Logout
                 </Link>
               </Nav.Item>

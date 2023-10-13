@@ -1,0 +1,17 @@
+.registerPage{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    background-image: url("https://img.freepik.com/free-vector/sunset-sunrise-ocean-nature-landscape_33099-2244.jpg?w=2000");
+    background-size: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.headtext{
+    color: white;
+    display: inline-block;
+    background-color: rgba(0,0,0,0.4);
+    height: 55px;
+    width: 15vw;
+}

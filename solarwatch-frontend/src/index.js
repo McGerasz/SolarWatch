@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import Layout from './Pages/Layout';
 import Homepage from './Pages/Homepage'
 import LoginPage from './Pages/LoginPage'
+import RegisterPage from './Pages/RegisterPage';
 
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />
+      },
+      {
+        path: "register",
+        element: <RegisterPage />
       }
     ]
   }

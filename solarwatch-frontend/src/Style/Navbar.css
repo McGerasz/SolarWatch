@@ -1,0 +1,19 @@
+.Navbar{
+    position: absolute;
+    color: white;
+    text-decoration: none;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100vw;
+    background-color: black;
+}
+.linkText{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.linkText:hover{
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+}

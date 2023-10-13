@@ -4,6 +4,7 @@ import {BrowserRouter, createBrowserRouter, RouterProvider, Route} from 'react-r
 import reportWebVitals from './reportWebVitals';
 import Layout from './Pages/Layout';
 import Homepage from './Pages/Homepage'
+import LoginPage from './Pages/LoginPage'
 
 
 const router = createBrowserRouter([
@@ -12,7 +13,11 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {path: "/",
-      element: <Homepage />}
+      element: <Homepage />},
+      {
+        path: "/login",
+        element: <LoginPage />
+      }
     ]
   }
 ]);

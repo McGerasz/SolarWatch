@@ -38,19 +38,24 @@ export default function NavigationBar() {
         />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
           <Nav>
+          <Nav.Item>
+              <Link to="/" className='linkText'>
+              Home&nbsp;&nbsp;&nbsp;&nbsp;|
+              </Link>
+            </Nav.Item>
             <Nav.Item>
               <Link to="/register" className='linkText'>
-                Register&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;Register&nbsp;&nbsp;&nbsp;&nbsp;|
               </Link>
             </Nav.Item>
               <Nav.Item>
                 <Link to="/login" className='linkText'>
-                  Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;|
                 </Link>
               </Nav.Item>
               <Nav.Item>
                 <Link to="/logout" className='linkText' onClick={handleLogout}>
-                  Logout
+                &nbsp;&nbsp;&nbsp;&nbsp;Logout
                 </Link>
               </Nav.Item>
           </Nav>

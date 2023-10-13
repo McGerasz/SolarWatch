@@ -9,7 +9,18 @@ using SolarWatch.DatabaseServices.Repositories;
 using SolarWatch.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy
+                .SetIsOriginAllowed(_ => true)
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
+});
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -81,7 +92,7 @@ builder.Services
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<UsersContext>();
 var app = builder.Build();
-
+app.UseCors();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

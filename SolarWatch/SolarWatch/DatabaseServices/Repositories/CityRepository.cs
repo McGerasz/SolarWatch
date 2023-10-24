@@ -5,54 +5,45 @@ namespace SolarWatch.DatabaseServices.Repositories;
 
 public class CityRepository : ICityRepository
 {
-    private readonly IConfiguration _configuration;
-
-    public CityRepository(IConfiguration configuration)
+    private readonly SolarWatchApiContext _context;
+    public CityRepository(SolarWatchApiContext context)
     {
-        _configuration = configuration;
+        _context = context;
     }
     public IEnumerable<City> GetAll()
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        return dbContext.Cities.ToList();
+        return _context.Cities.ToList();
     }
 
     public City? GetByName(string name)
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        return dbContext.Cities
+        return _context.Cities
             .Include(city => city.SunriseSunsets)
             .FirstOrDefault(city => city.Name == name);
     }
 
     public void Add(City city)
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        dbContext.Add(city);
-        dbContext.SaveChanges();
+        _context.Add(city);
+        _context.SaveChanges();
     }
 
     public void Delete(City city)
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        dbContext.Remove(city);
-        dbContext.SaveChanges();
+        _context.Remove(city);
+        _context.SaveChanges();
     }
 
     public void Update(City city)
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        dbContext.Update(city);
-        dbContext.SaveChanges();
+        _context.Update(city);
+        _context.SaveChanges();
     }
 
     public City? GetById(int id)
     {
-        {
-            using var dbContext = new SolarWatchApiContext(_configuration);
-            return dbContext.Cities
+            return _context.Cities
                 .Include(city => city.SunriseSunsets)
                 .FirstOrDefault(city => city.Id == id);
-        }
     }
 }

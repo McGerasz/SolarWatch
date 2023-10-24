@@ -5,44 +5,39 @@ namespace SolarWatch.DatabaseServices.Repositories;
 
 public class SunriseSunsetRepository : ISunriseSunsetRepository
 {
-    private readonly IConfiguration _configuration;
+    private readonly SolarWatchApiContext _context;
 
-    public SunriseSunsetRepository(IConfiguration configuration)
+    public SunriseSunsetRepository(SolarWatchApiContext context)
     {
-        _configuration = configuration;
+        _context = context;
     }
     public IEnumerable<SunriseSunset> GetAll()
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        return dbContext.SunriseSunsets.ToList();
+        return _context.SunriseSunsets.ToList();
     }
 
     public SunriseSunset? GetById(int id)
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        return dbContext.SunriseSunsets
+        return _context.SunriseSunsets
             .Include(sunset => sunset.City)
             .FirstOrDefault(sunset => sunset.Id == id);
     }
 
     public void Add(SunriseSunset sunriseSunset)
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        dbContext.SunriseSunsets.Add(sunriseSunset);
-        dbContext.SaveChanges();
+        _context.SunriseSunsets.Add(sunriseSunset);
+        _context.SaveChanges();
     }
 
     public void Delete(SunriseSunset sunriseSunset)
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        dbContext.Remove(sunriseSunset);
-        dbContext.SaveChanges();
+        _context.Remove(sunriseSunset);
+        _context.SaveChanges();
     }
 
     public void Update(SunriseSunset sunriseSunset)
     {
-        using var dbContext = new SolarWatchApiContext(_configuration);
-        dbContext.Update(sunriseSunset);
-        dbContext.SaveChanges();
+        _context.Update(sunriseSunset);
+        _context.SaveChanges();
     }
 }

@@ -104,6 +104,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-DatabaseSetup.Run(app);
+if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Testing")DatabaseSetup.Run(app);
 app.Run();
 
+public partial class Program { }

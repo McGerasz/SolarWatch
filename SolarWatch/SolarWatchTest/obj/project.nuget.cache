@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uFdYBTvDCYlpTivSi1xz7d0Fq9Rz/g9vrJc5eTi1yb+L6ZUybhaFGCI2DQ+AiqIuEKAVG73NyHR45yXc0G41PA==",
+  "dgSpecHash": "1Kz4GPpi1gPvmbGT08z8xEUKSejFZqWcR55TfskTDywD2MmACjYn0dkfECvJwcULHPWc0mpWkjz0hA3mL0JjiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gergo\\Documents\\Codecool\\C#\\SolarWatch\\SolarWatch\\SolarWatchTest\\SolarWatchTest.csproj",
+  "projectFilePath": "C:\\Users\\gergo\\Documents\\Codecool\\CSharp\\SolarWatch\\SolarWatch\\SolarWatchTest\\SolarWatchTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gergo\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
@@ -22,6 +22,7 @@
     "C:\\Users\\gergo\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.12\\microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.12\\microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.12\\microsoft.entityframeworkcore.analyzers.7.0.12.nupkg.sha512",
+    "C:\\Users\\gergo\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\7.0.12\\microsoft.entityframeworkcore.inmemory.7.0.12.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.12\\microsoft.entityframeworkcore.relational.7.0.12.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\7.0.11\\microsoft.entityframeworkcore.sqlserver.7.0.11.nupkg.sha512",
     "C:\\Users\\gergo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

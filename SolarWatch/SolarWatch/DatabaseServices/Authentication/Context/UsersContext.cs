@@ -20,7 +20,12 @@ public class UsersContext : IdentityDbContext<IdentityUser, IdentityRole, string
     }
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer(Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING"));
+        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Testing")
+        {
+            options.UseInMemoryDatabase("TestDatabase");
+        }
+        else options.UseSqlServer(
+            Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING"));
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

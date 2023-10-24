@@ -11,19 +11,17 @@ public class SolarWatchApiContext : DbContext
     public DbSet<SunriseSunset> SunriseSunsets { get; set; }
     private IConfiguration _configuration;
 
-    public SolarWatchApiContext(IConfiguration configuration)
+    public SolarWatchApiContext()
     {
-        _configuration = configuration;
-        var databaseCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
-        if (databaseCreator != null)
-        {
-            if(!databaseCreator.CanConnect()) databaseCreator.Create();
-            if(!databaseCreator.HasTables()) databaseCreator.CreateTables();
-        }
+        if(Database.IsRelational()) Database.Migrate();
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(
+        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Testing")
+        {
+            optionsBuilder.UseInMemoryDatabase("TestDatabase");
+        }
+        else optionsBuilder.UseSqlServer(
             Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING"));
     }
     protected override void OnModelCreating(ModelBuilder builder)

@@ -180,7 +180,7 @@ public class SolarWatchController : ControllerBase
         };
         _logger.LogInformation("Updating database...");
         _sunriseSunsetRepository.Add(newSnS);
-        return Ok(_sunriseSunsetRepository.GetAll().First(sunset => sunset.SunriseTime == sunriseTime
+        return Ok(_sunriseSunsetRepository.GetAll().FirstOrDefault(sunset => sunset.SunriseTime == sunriseTime
                                                                     && sunset.SunsetTime == sunriseTime
                                                                     && sunset.Date.Year == date.Date.Year 
                                                                     && sunset.Date.Month == date.Date.Month

@@ -25,3 +25,11 @@ services:
       ACCEPT_EULA: Y
     ports:
       - "1433:1433"
+  
+  solarwatch-frontend:
+    image: mcgerasz/solarwatch-frontend:latest
+    build:
+      context: ../solarwatch-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"

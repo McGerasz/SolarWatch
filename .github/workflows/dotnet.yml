@@ -36,4 +36,6 @@ jobs:
         docker build -t mcgerasz/solarwatch:latest .
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push mcgerasz/solarwatch:latest
+        docker build -t mcgerasz/solarwatch-frontend:latest .
+        docker push -t mcgerasz/solarwatch-frontend:latest
       working-directory: SolarWatch

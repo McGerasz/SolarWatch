@@ -23,6 +23,7 @@ export default function RegisterComponent() {
           
             const response = fetch(`${APIUrl}Auth/Register`, {
               method: "POST",
+              mode: 'cors',
               headers: {
                 "Content-Type": "application/json",
               },

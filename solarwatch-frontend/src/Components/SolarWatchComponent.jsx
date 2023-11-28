@@ -24,8 +24,7 @@ export default function SolarWatch() {
     try {
       const response = await fetch(`${APIUrl}api/SolarWatch/get?cityName=${city}&date=${date}`, {
         method: "GET",
-        withCredentials: true,
-        credentials: 'include',
+        mode: 'cors',
         headers: {
           "Authorization": bearer,
           "Content-Type": "application/json"

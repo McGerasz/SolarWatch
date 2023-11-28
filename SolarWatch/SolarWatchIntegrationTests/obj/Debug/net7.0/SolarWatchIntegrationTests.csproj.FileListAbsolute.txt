@@ -458,3 +458,5 @@ C:\Users\gergo\Documents\Codecool\CSharp\SolarWatch\SolarWatch\SolarWatchIntegra
 C:\Users\gergo\Documents\Codecool\CSharp\SolarWatch\SolarWatch\SolarWatchIntegrationTests\obj\Debug\net7.0\SolarWatchIntegrationTests.pdb
 C:\Users\gergo\Documents\Codecool\CSharp\SolarWatch\SolarWatch\SolarWatchIntegrationTests\obj\Debug\net7.0\SolarWatchIntegrationTests.genruntimeconfig.cache
 C:\Users\gergo\Documents\Codecool\CSharp\SolarWatch\SolarWatch\SolarWatchIntegrationTests\obj\Debug\net7.0\ref\SolarWatchIntegrationTests.dll
+C:\Users\gergo\Documents\Codecool\CSharp\SolarWatch\SolarWatch\SolarWatchIntegrationTests\bin\Debug\net7.0\Npgsql.dll
+C:\Users\gergo\Documents\Codecool\CSharp\SolarWatch\SolarWatch\SolarWatchIntegrationTests\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

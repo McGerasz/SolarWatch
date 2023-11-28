@@ -1,1 +1,1 @@
-export const APIUrl = "http://localhost:80/";
+export const APIUrl = "https://solarwatchapi.onrender.com/";

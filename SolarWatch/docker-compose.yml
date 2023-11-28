@@ -1,14 +1,14 @@
 version: '3.8'
 services:
   solarwatch-app:
-    image: mcgerasz/solarwatch:latest
+    image: mcgerasz/solarwatch-postgresql:latest
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "80:80"
     depends_on:
-      - mssql
+      - postgres
     environment:
       ASPNETCORE_CONNECTIONSTRING: ${ASPNETCORE_CONNECTIONSTRING}
       ASPNETCORE_GEOLOCATORAPIKEY: ${ASPNETCORE_GEOLOCATORAPIKEY}
@@ -18,11 +18,12 @@ services:
       ASPNETCORE_ADMINEMAIL: ${ASPNETCORE_ADMINEMAIL}
       ASPNETCORE_ADMINPASSWORD: ${ASPNETCORE_ADMINPASSWORD}
 
-  mssql:
-    image: mcr.microsoft.com/mssql/server
+  postgres:
+    image: postgres
     environment:
-      SA_PASSWORD: ${DATABASE_PASSWORD}
-      ACCEPT_EULA: Y
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "Password123"
+      POSTGRES_DB: "WQuizzDB"
     ports:
       - "1433:1433"
   

@@ -21,7 +21,7 @@ public class SolarWatchApiContext : DbContext
         {
             optionsBuilder.UseInMemoryDatabase("TestDatabase");
         }
-        else optionsBuilder.UseSqlServer(
+        else optionsBuilder.UseNpgsql(
             Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING"));
     }
     protected override void OnModelCreating(ModelBuilder builder)

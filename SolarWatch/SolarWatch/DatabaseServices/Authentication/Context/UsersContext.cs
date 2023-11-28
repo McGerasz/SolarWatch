@@ -24,7 +24,7 @@ public class UsersContext : IdentityDbContext<IdentityUser, IdentityRole, string
         {
             options.UseInMemoryDatabase("TestDatabase");
         }
-        else options.UseSqlServer(
+        else options.UseNpgsql(
             Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING"));
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)

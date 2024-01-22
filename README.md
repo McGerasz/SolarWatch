@@ -30,14 +30,6 @@ Get an API Key from the following website: https://openweathermap.org/api/geocod
 ### Installation
 
 1. Clone the repository
-2. Run the Docker Compose file with the following environmental variables set:</br>
-ASPNETCORE_CONNECTIONSTRING="Server=mssql,1433;Database=SolarWatchApi;User Id=sa;Password=/yourDatabasePassword/;trustServerCertificate=true;"</br>
-ASPNETCORE_GEOLOCATORAPIKEY="/yourAPIKey/"</br>
-DATABASE_PASSWORD="/thePasswordYouProvidedInTheConnectionString/"</br>
-ASPNETCORE_VALIDISSUER="apiWithAuthToBackend"</br>
-ASPNETCORE_VALIDAUDIENCE="apiWithAuthToBackend"</br>
-ASPNETCORE_ISSUERSIGNINGKEY="/yourIssuerSigningKey/"</br>
-ASPNETCORE_ADMINEMAIL="/anEmailToLoginWith/"</br>
-ASPNETCORE_ADMINPASSWORD="/aPasswordToLogInWith/"</br>
+2. Enter your Geolocator API Key into the docker compose file found in SolarWatch/SolarWatch and run it with `docker-compose up --build`
 3. Access the frontend page at http://localhost:3000/
 

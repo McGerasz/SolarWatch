@@ -4,7 +4,7 @@ SolarWatch is project that provides the user the ability to get information abou
 The app features an authentication system and stores information on a database via a REST API.</br>
 </br>
 There is an alternative PostgreSQL version available in the Backend/PostgreSQL-version branch. I made it because the services I used to deploy the application provided PostgreSQL databases.</br>
-Unfortunately the database providers only provided a certain amount of time to use them and since then it has ran out.
+Unfortunately the database providers only provided a certain amount of time to use them and since then it has ran out. That version will not work without additional configuration as it was specifacally made to be deployed!
 
 
 ### Built With
